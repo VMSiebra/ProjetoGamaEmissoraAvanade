@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace ProjetoGamaEmissora.Dominio.Interface
 {
-    public interface IFuncionarioRepositorio
+    public interface IAtorRepositorio
     {
-        Task<int> InserirAsync(Funcionario funcionario);
-        //Task<Hero> GetByIdAsync(int id);
-        IEnumerable<Funcionario> Consultar();
+        Task<int> InserirAtorAsync(Ator agenda);
+
+        Task<Ator> ConsultarItemAtorIdAsync(int id);
+
+        IEnumerable<Ator> ConsultarAtores();
     }
 }

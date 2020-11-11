@@ -7,21 +7,14 @@ namespace ProjetoGamaEmissora.Dominio.modelo
     public class Genero
     {
         public int _Id { get; private set; }
-        public string _Genero { get; private set; }
+        public string _Descricao { get; private set; }
 
-        public Genero(int id, string genero)
+        public Genero(int id, string descricao)
         {
             _Id     = id;
-            _Genero = genero;
+            _Descricao = descricao;
         }
 
-        public bool IsValid()
-        {
-            var valid = true;
-
-            if (string.IsNullOrEmpty(_Genero)) valid = false;
-
-            return valid;
-        }
+        
     }
 }
