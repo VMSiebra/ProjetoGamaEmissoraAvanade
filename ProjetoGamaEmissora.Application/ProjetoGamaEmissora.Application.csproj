@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Marraia.Notifications" Version="1.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ProjetoGamaEmissora.Dominio\ProjetoGamaEmissora.Dominio.csproj" />
+    <ProjectReference Include="..\ProjetoGamaEmissora.Infraestrutura\ProjetoGamaEmissora.Infraestrutura.csproj" />
   </ItemGroup>
 
 </Project>

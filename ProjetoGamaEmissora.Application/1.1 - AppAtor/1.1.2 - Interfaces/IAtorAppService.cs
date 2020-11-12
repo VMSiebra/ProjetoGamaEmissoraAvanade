@@ -11,6 +11,6 @@ namespace ProjetoGamaEmissora.Application.AppAtor.Interfaces
     {
         Task<Ator> InserirAtorAsync(AtorInput ator);
         Task<Ator> ConsultarItemAtorIdAsync(int id);
-        IEnumerable<Ator> Get();
+        IEnumerable<Ator> ConsultarAtores();
     }
 }

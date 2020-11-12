@@ -7,6 +7,7 @@ namespace ProjetoGamaEmissora.Dominio.modelo
 {
     public class Ator : Funcionario
     {
+
         public List<Genero> _Genero { get; private set; }
         public double _Cache { get; private set; } 
         public bool _Status { get; private set; }
