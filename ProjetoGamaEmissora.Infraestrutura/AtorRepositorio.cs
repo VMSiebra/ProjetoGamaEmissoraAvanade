@@ -23,7 +23,7 @@ namespace ProjetoGamaEmissora.Infraestrutura
         {
             try
             {
-                using (var con = new SqlConnection(_Configuration["minhaStringDeConexao"]))
+                using (var con = new SqlConnection(_Configuration["ConnectionString"]))
                 {
                     var atorLista = new List<Ator>();
                     var comandoSQL = @"SELECT F.FuncionarioID, 
@@ -98,7 +98,7 @@ namespace ProjetoGamaEmissora.Infraestrutura
             throw new NotImplementedException();
         }
 
-        Task<int> IAtorRepositorio.InserirAtorAsync(Ator agenda)
+        Task<int> IAtorRepositorio.InserirAtorAsync(Ator ator)
         {
             throw new NotImplementedException();
         }

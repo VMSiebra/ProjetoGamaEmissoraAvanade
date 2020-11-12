@@ -43,7 +43,7 @@ namespace ProjetoGamaEmissoraAvanade.Api.Controllers
         [ProducesResponseType(500)]
         public IActionResult Get()
         {
-            var item = _atorAppService.Get();
+            var item = _atorAppService.ConsultarAtores();
             return Ok(item);
         }
 

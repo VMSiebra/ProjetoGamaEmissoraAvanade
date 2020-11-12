@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ProjetoGamaEmissora.Infraestrutura.Ioc;
 
 namespace ProjetoGamaEmissoraAvanade.Api
 {
@@ -54,7 +55,7 @@ namespace ProjetoGamaEmissoraAvanade.Api
 
         private void RegisterServices(IServiceCollection services)
         {
-            throw new NotImplementedException();
+            new RootBootstraper().RootRegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

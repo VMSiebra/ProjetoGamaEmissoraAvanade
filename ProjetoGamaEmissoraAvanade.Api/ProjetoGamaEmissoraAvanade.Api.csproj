@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProjetoGamaEmissora.Application\ProjetoGamaEmissora.Application.csproj" />
+    <ProjectReference Include="..\ProjetoGamaEmissora.Infraestrutura.Ioc\ProjetoGamaEmissora.Infraestrutura.IoC.csproj" />
   </ItemGroup>
 
 
