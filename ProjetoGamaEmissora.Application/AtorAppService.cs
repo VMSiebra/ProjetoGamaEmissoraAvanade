@@ -24,7 +24,7 @@ namespace ProjetoGamaEmissora.Application
         {
             return _atorRepositorio.ConsultarAtores();
         }
-
+        //
         public async Task<Ator> ConsultarItemAtorIdAsync(int id)
         {
             return await _atorRepositorio
