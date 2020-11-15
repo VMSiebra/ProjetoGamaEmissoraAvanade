@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Marraia.Notifications" Version="1.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
   </ItemGroup>
 
   <ItemGroup>

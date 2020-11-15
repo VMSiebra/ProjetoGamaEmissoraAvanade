@@ -79,7 +79,7 @@ namespace ProjetoGamaEmissoraAvanade.Api
 
             app.UseSwagger();
             app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProjetoGamaEmissora");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProjetoGamaEmissoraAvanade");
             });
         }
     }

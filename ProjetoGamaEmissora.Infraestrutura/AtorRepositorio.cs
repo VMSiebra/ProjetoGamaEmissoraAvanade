@@ -26,14 +26,14 @@ namespace ProjetoGamaEmissora.Infraestrutura
                 using (var con = new SqlConnection(_Configuration["ConnectionString"]))
                 {
                     var atorLista = new List<Ator>();
-                    var comandoSQL = @"SELECT F.FuncionarioID, 
-                                    F.Nome, 
-                                    F.Idade, 
-                                    F.Sexo, 
+                    var comandoSQL = @"SELECT 
+                                    A.Nome, 
+                                    A.Idade, 
+                                    A.Sexo, 
                                     A.Cache, 
                                     A.Status, 
                                     A.Relevancia
-                                    FROM FUNCIONARIO F INNER JOIN ATOR A ON F.FuncionarioID = A.FuncionarioID";
+                                    FROM ATOR A";
 
                     using (var cmd = new SqlCommand(comandoSQL, con))
                     {
@@ -47,36 +47,34 @@ namespace ProjetoGamaEmissora.Infraestrutura
                         while (reader.Read())
                         {
 
-                            var comandoSQLGenero = @"SELECT G.GeneroID,
-                                                   G.Descricao
-                                              FROM AtorGenero AG INNER JOIN Genero G ON AG.GeneroID = G.GeneroID
-                                              WHERE AG.AtorID = @AtorID";
+                            //var comandoSQLGenero = @"SELECT G.GeneroID,
+                            //                       G.Descricao
+                            //                  FROM AtorGenero AG INNER JOIN Genero G ON AG.GeneroID = G.GeneroID
+                            //                  WHERE AG.AtorID = @AtorID";
 
-                            using (var cmdGenero = new SqlCommand(comandoSQLGenero, con))
-                            {
-                                cmdGenero.CommandType = CommandType.Text;
-                                cmdGenero.Parameters.AddWithValue("@AtorID", reader["ActorId"].ToString());
+                            //using (var cmdGenero = new SqlCommand(comandoSQLGenero, con))
+                            //{
+                            //    cmdGenero.CommandType = CommandType.Text;
+                            //    cmdGenero.Parameters.AddWithValue("@AtorID", reader["ActorId"].ToString());
 
-                                var readerGenero = cmdGenero.ExecuteReader();
+                            //    var readerGenero = cmdGenero.ExecuteReader();
 
-                                while (readerGenero.Read())
-                                { 
-                                    var genero = new Genero(int.Parse(readerGenero["GeneroID"].ToString()),
-                                        readerGenero["Descricao"].ToString());
-                                    generoLista.Add(genero);
-                                }
+                            //    while (readerGenero.Read())
+                            //    { 
+                            //        var genero = new Genero(int.Parse(readerGenero["GeneroID"].ToString()),
+                            //            readerGenero["Descricao"].ToString());
+                            //        generoLista.Add(genero);
+                            //    }
 
-                            }
+                            //}
 
                             var ator = new Ator(
                                             reader["Nome"].ToString(),
                                             int.Parse(reader["Idade"].ToString()),
-                                            reader["Sexo"].ToString(),
-                                            reader["Login"].ToString(),
-                                            reader["Senha"].ToString(),
+                                            reader["Sexo"].ToString(),                                            
                                             generoLista,
                                             double.Parse(reader["Cache"].ToString()),
-                                            bool.Parse(reader["Status"].ToString()),
+                                            reader["Status"].ToString(),
                                             int.Parse(reader["Relevancia"].ToString())
                                         );
 
