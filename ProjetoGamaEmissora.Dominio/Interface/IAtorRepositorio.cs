@@ -12,6 +12,7 @@ namespace ProjetoGamaEmissora.Dominio.Interface
 
         Task<Ator> ConsultarItemAtorIdAsync(int id);
 
+        //Retorna uma lista de atores
         IEnumerable<Ator> ConsultarAtores();
     }
 }
