@@ -19,6 +19,7 @@ namespace ProjetoGamaEmissora.Infraestrutura
             _Configuration = config; 
         }
 
+        //Só quem tem permissão de consultar eh o produtor!!!!!!!!!!!!
         public IEnumerable<Ator> ConsultarAtores()
         {
             try
@@ -96,9 +97,58 @@ namespace ProjetoGamaEmissora.Infraestrutura
             throw new NotImplementedException();
         }
 
-        Task<int> IAtorRepositorio.InserirAtorAsync(Ator ator)
+        async Task<int> IAtorRepositorio.InserirAtorAsync(Ator ator)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var con = new SqlConnection(_Configuration["ConnectionString"]))
+                {
+                    var sqlCmd = @"INSERT INTO 
+                                    ATOR (
+                                         UsuarioID
+                                        ,Nome
+                                        ,Idade
+                                        ,Sexo
+                                        ,Cache
+                                        ,Status
+                                        ,Relevancia
+                                        ) 
+                                    VALUES (
+                                        @UsuarioID
+                                        @Nome, 
+                                        @Idade,
+                                        @Sexo, 
+                                        @Cache
+                                        @Status,
+                                        @Relevancia
+                                        ); 
+                                    SELECT scope_identity();";
+
+                    using (SqlCommand cmd = new SqlCommand(sqlCmd, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        //Inserir o ID do usuário para vincular ao ator
+                        cmd.Parameters.AddWithValue("UsuarioID", ator._UsuarioID);
+                        cmd.Parameters.AddWithValue("Nome", ator._Nome);
+                        cmd.Parameters.AddWithValue("Idade", ator._Idade);
+                        cmd.Parameters.AddWithValue("Sexo", ator._Sexo);
+                        cmd.Parameters.AddWithValue("Cache", ator._Cache);
+                        cmd.Parameters.AddWithValue("Status", ator._Status);
+                        cmd.Parameters.AddWithValue("Relevancia", ator._Relevancia);
+
+                        con.Open();
+                        var id = await cmd
+                                        .ExecuteScalarAsync()
+                                        .ConfigureAwait(false);
+
+                        return int.Parse(id.ToString());
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

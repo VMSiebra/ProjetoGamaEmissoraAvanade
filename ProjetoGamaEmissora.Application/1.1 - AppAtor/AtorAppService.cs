@@ -20,6 +20,7 @@ namespace ProjetoGamaEmissora.Application
             _atorRepositorio = atorRepositorio;
         }
 
+        //Método somente o produtor acessa
         public IEnumerable<Ator> ConsultarAtores()
         {
             return _atorRepositorio.ConsultarAtores();
@@ -35,7 +36,7 @@ namespace ProjetoGamaEmissora.Application
         public async Task<Ator> InserirAtorAsync(AtorInput input)
         {
       
-            var ator = new Ator(input._Nome,input._Idade,input._Sexo, input._Cache
+            var ator = new Ator(input._UsuarioID, input._Nome, input._Idade, input._Sexo, input._Cache
                                 ,input._Status, input._Relevancia);
 
             if (!ator.IsValid())
@@ -43,11 +44,31 @@ namespace ProjetoGamaEmissora.Application
                 _notification.NewNotificationBadRequest("Os dados são obrigatórios");
                 return default;
             }
-
-
+            
             var id = await _atorRepositorio
                                 .InserirAtorAsync(ator)
                                 .ConfigureAwait(false);
+
+            if ((!ator._Sexo.Equals("M")) || (!ator._Sexo.Equals("F")))
+            {
+                _notification.NewNotificationConflict("Informar o sexo como masculino ou feminino. ");
+                return default;
+            }
+
+            if (ator._Cache <= 0)
+            {
+                _notification.NewNotificationConflict("Cachê inválido!");
+                return default;
+            }
+
+            if (ator._Relevancia < 0 || ator._Relevancia > 5)
+            {
+                _notification.NewNotificationConflict("A relevância dever ser de 0 a 5 ");
+                return default;
+            }
+
+
+
 
             return await ConsultarItemAtorIdAsync(id)
                             .ConfigureAwait(false);

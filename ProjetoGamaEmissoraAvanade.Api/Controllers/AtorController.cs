@@ -23,7 +23,8 @@ namespace ProjetoGamaEmissoraAvanade.Api.Controllers
         {
             _atorAppService = heroAppService;
         }
-
+        //Só quem pode acessar a lista de atores eh o produtor!
+        //Realizar a implementação
         [HttpPost]
         [ProducesResponseType(typeof(string), 201)]
         [ProducesResponseType(400)]
