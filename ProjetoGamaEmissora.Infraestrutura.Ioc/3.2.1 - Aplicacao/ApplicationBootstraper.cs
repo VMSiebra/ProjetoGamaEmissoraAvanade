@@ -11,7 +11,7 @@ namespace ProjetoGamaEmissora.Infraestrutura.IoC._3._2._1___Aplicacao
         internal void ChildServiceRegister(IServiceCollection services)
         {
             services.AddScoped<IUsuarioAppService, UsuarioAppService>();
-            //services.AddScoped<ILoginAppService, LoginAppService>();
+            services.AddScoped<ILoginAppService, LoginAppService>();
             services.AddScoped<IAtorAppService, AtorAppService>();
         }
     }

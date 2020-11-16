@@ -65,9 +65,52 @@ namespace ProjetoGamaEmissora.Infraestrutura
             throw new NotImplementedException();
         }
 
-        public Task<Usuario> PegarLoginAsync(string login)
+        public async Task<Usuario> LoginAsync(string login)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var con = new SqlConnection(_configuration["ConnectionString"]))
+                {
+                    var sqlCmd = @$"SELECT 
+                                        U.UsuarioID,
+	                                    U.Nome,
+	                                    U.Login,
+	                                    U.Senha,
+	                                    P.PerfilID,
+	                                    P.Descricao
+                                    FROM 
+	                                    USUARIO U JOIN PERFIL P
+		                                    ON U.PerfilID = P.PerfilID      
+                                    WHERE U.login='{login}'";
+
+                    using (SqlCommand cmd = new SqlCommand(sqlCmd, con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        con.Open();
+
+                        var reader = await cmd
+                                            .ExecuteReaderAsync()
+                                            .ConfigureAwait(false);
+
+                        while (reader.Read())
+                        {
+                            var user = new Usuario(int.Parse(reader["UsuarioID"].ToString()),
+                                                reader["Nome"].ToString(),
+                                                new Perfil(int.Parse(reader["PerfilID"].ToString()),
+                                                            reader["Descricao"].ToString()));
+
+                            user.InformationLoginUser(reader["Login"].ToString(), reader["Senha"].ToString());
+                            return user;
+                        }
+
+                        return default;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public Task<Usuario> RecuperarIdAsync(int id)

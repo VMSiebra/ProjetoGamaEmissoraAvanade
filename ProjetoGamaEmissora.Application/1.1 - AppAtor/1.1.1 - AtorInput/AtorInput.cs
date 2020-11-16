@@ -6,7 +6,8 @@ using System.Text;
 namespace ProjetoGamaEmissora.Application.AppAtor.Input
 {
     public class AtorInput
-    {   
+    {
+        public int _UsuarioID { get; set; }
         public string _Nome { get; set; }
         public int _Idade { get; set; }
         public string _Sexo { get; set; }        

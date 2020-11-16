@@ -17,9 +17,7 @@ namespace ProjetoGamaEmissoraAvanade.Api.Controllers
     public class UsuarioController : BaseController
     {
         private readonly IUsuarioAppService _usuarioAppService;
-        public UsuarioController(INotificationHandler<DomainNotification> notification,
-                               IUsuarioAppService usuarioAppService)
-            : base(notification)
+        public UsuarioController(INotificationHandler<DomainNotification> notification, IUsuarioAppService usuarioAppService) : base(notification)
         {
             _usuarioAppService = usuarioAppService;
         }

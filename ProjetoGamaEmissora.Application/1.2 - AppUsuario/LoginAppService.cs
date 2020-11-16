@@ -24,7 +24,7 @@ namespace ProjetoGamaEmissora.Application._1._2___AppUsuario
         public async Task<UsuarioViewModel> LoginAsync(string login, string senha)
         {
             var usuario = await _usuarioRepositorio
-                                .PegarLoginAsync(login)
+                                .LoginAsync(login)
                                 .ConfigureAwait(false);
 
             if (usuario == default)

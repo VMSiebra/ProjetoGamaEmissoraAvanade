@@ -25,9 +25,7 @@ namespace ProjetoGamaEmissoraAvanade.Api.Controllers
         private readonly IConfiguration _configuration;
         private readonly DomainNotificationHandler _smartNotification;
 
-        public LoginController(INotificationHandler<DomainNotification> notification,
-            ILoginAppService loginAppService,
-            IConfiguration configuration)
+        public LoginController(INotificationHandler<DomainNotification> notification, ILoginAppService loginAppService, IConfiguration configuration)
             : base(notification)
         {
             _loginAppService = loginAppService;
@@ -56,8 +54,8 @@ namespace ProjetoGamaEmissoraAvanade.Api.Controllers
                         new[] {
                         new Claim(JwtRegisteredClaimNames.Jti, logged._Id.ToString()),
                         new Claim(ClaimTypes.Role, logged._Perfil._Descricao),
-                        new Claim("IdProfile", logged._Perfil._PerfilID.ToString()),
-                        new Claim("NameUser", logged._Name)
+                        new Claim("PerfilID", logged._Perfil._PerfilID.ToString()),
+                        new Claim("Nome", logged._Name)
                         }
                     );
 

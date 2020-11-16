@@ -52,6 +52,7 @@ namespace ProjetoGamaEmissora.Application._1._2___AppUsuario
             return new UsuarioViewModel(id, usuario._Login, usuario._Name, usuario._Perfil, usuario._DataCriacao);
         }
 
+
         //public async Task<UserViewModel> UpdateAsync(int id, UserInput input)
         //{
         //    var user = await _userRepository
