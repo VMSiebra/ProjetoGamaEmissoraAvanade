@@ -36,7 +36,7 @@ namespace ProjetoGamaEmissora.Application
         public async Task<Ator> InserirAtorAsync(AtorInput input)
         {
       
-            var ator = new Ator(input._UsuarioID, input._Nome, input._Idade, input._Sexo, input._Cache
+            var ator = new Ator(input._UsuarioID, input._Nome, input._Idade, input._Sexo, input._Genero, input._Cache
                                 ,input._Status, input._Relevancia);
 
             if (!ator.IsValid())
