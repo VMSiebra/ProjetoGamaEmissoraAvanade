@@ -67,7 +67,7 @@ namespace ProjetoGamaEmissora.Infraestrutura
                                                     , new Ator(int.Parse(reader["AtorId"].ToString())
                                                               , reader["NomeAtor"].ToString()
                                                               , int.Parse(reader["Idade"].ToString())
-                                                              , reader["Sexo"].ToString()
+                                                              , char.Parse(reader["Sexo"].ToString())
                                                               , double.Parse(reader["Cache"].ToString())
                                                               , reader["Status"].ToString() 
                                                               , int.Parse(reader["Relevancia"].ToString()))
