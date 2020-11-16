@@ -13,10 +13,17 @@ namespace ProjetoGamaEmissora.Application
     public class AtorAppService : IAtorAppService
     {
         private readonly IAtorRepositorio _atorRepositorio;
+        private readonly IGeneroRepositorio _generoRepositorio;
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
         private readonly ISmartNotification _notification;
-        public AtorAppService(ISmartNotification notification, IAtorRepositorio atorRepositorio)
+        public AtorAppService(ISmartNotification notification, 
+                              IAtorRepositorio atorRepositorio,
+                              IUsuarioRepositorio usuarioRepositorio,
+                              IGeneroRepositorio generoRepositorio)
         {
+            _generoRepositorio = generoRepositorio;
             _notification = notification;
+            _usuarioRepositorio = usuarioRepositorio;
             _atorRepositorio = atorRepositorio;
         }
 
@@ -35,21 +42,31 @@ namespace ProjetoGamaEmissora.Application
         
         public async Task<Ator> InserirAtorAsync(AtorInput input)
         {
-      
-            var ator = new Ator(input._UsuarioID, input._Nome, input._Idade, input._Sexo, input._Genero, input._Cache
+
+            var user = await _usuarioRepositorio
+                  .RecuperarIdAsync(input._UsuarioID)
+                  .ConfigureAwait(false);
+
+            var genero = await _generoRepositorio
+                .GetGeneroIdAsync(input._Genero)
+                .ConfigureAwait(false);
+
+            if (user is null)
+            {
+                _notification.NewNotificationConflict("Usuário associado não existe!");
+                return default;
+            }
+
+            var ator = new Ator(user._UsuarioID, input._Nome, input._Idade, input._Sexo, genero, input._Cache
                                 ,input._Status, input._Relevancia);
 
             if (!ator.IsValid())
             {
-                _notification.NewNotificationBadRequest("Os dados são obrigatórios");
+                _notification.NewNotificationConflict("Os dados são obrigatórios");
                 return default;
             }
-            
-            var id = await _atorRepositorio
-                                .InserirAtorAsync(ator)
-                                .ConfigureAwait(false);
 
-            if ((!ator._Sexo.Equals("M")) || (!ator._Sexo.Equals("F")))
+            if ((ator._Sexo != 'M') && (ator._Sexo != 'F'))
             {
                 _notification.NewNotificationConflict("Informar o sexo como masculino ou feminino. ");
                 return default;
@@ -67,10 +84,21 @@ namespace ProjetoGamaEmissora.Application
                 return default;
             }
 
+            var actorId = await _atorRepositorio
+                            .ConsultarAtorUsuarioIdAsync(user._UsuarioID)
+                            .ConfigureAwait(false);
 
+            if (actorId > 0)
+            {
+                _notification.NewNotificationConflict("Ator já cadastrado.");
+                return default;
+            }
 
+            var atorId = await _atorRepositorio
+                   .InserirAtorAsync(ator)
+                   .ConfigureAwait(false);
 
-            return await ConsultarItemAtorIdAsync(id)
+            return await ConsultarItemAtorIdAsync(atorId)
                             .ConfigureAwait(false);
         }
     
