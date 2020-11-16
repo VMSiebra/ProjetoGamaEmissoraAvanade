@@ -30,16 +30,6 @@ namespace ProjetoGamaEmissora.Dominio.modelo
             _Relevancia = relevancia;
         }
 
-        //public Ator(string nome, int idade, string sexo, double cache, string status, int relevancia)
-        //{
-        //    _Nome = nome;
-        //    _Idade = idade;
-        //    _Sexo = sexo;
-        //    _Cache = cache;
-        //    _Status = status;
-        //    _Relevancia = relevancia;
-        //}
-
         public Ator(int atorId, int usuarioId, string nome, int idade, string sexo, List<Genero> genero, double cache,
             string status, int relevancia)            
         {
@@ -53,20 +43,6 @@ namespace ProjetoGamaEmissora.Dominio.modelo
             _Status     = status;
             _Relevancia = relevancia;
         }
-
-        //public Ator(int usuarioId, int atorId, string nome, int idade, string sexo, List<Genero> genero, double cache,
-        //    string status, int relevancia)
-        //{
-        //    _AtorID = atorId;
-        //    _UsuarioID = usuarioId;
-        //    _Nome = nome;
-        //    _Idade = idade;
-        //    _Sexo = sexo;
-        //    _Genero = genero;
-        //    _Cache = cache;
-        //    _Status = status;
-        //    _Relevancia = relevancia;
-        //}
 
         public bool IsValid()
         {
