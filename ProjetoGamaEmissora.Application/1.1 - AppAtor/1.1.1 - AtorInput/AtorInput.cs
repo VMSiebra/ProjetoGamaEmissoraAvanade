@@ -10,8 +10,8 @@ namespace ProjetoGamaEmissora.Application.AppAtor.Input
         public int _UsuarioID { get; set; }
         public string _Nome { get; set; }
         public int _Idade { get; set; }
-        public string _Sexo { get; set; }        
-        public List<Genero> _Genero { get; set; }
+        public char _Sexo { get; set; }        
+        public List<int> _Genero { get; set; }
         public double _Cache { get; set; }
         public string _Status { get; set; }
         public int _Relevancia { get; set; }     
