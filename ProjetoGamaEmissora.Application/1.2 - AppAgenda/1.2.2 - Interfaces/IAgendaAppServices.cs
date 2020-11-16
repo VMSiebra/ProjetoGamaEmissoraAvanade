@@ -9,13 +9,13 @@ namespace ProjetoGamaEmissora.Application._1._2___AppAgenda._1._2._2___Interface
 {
     public interface IAgendaAppServices 
     {
-        Task<Agenda> InserirAgendaAsync(Agenda agenda);
+        Task<int> InserirAgendaAsync(AgendaInput agenda);
 
-        Task<Agenda> ConsultarAgendaProdutorAsync(int idProdutor);
+        IEnumerable<Agenda> ConsultarAgendaProdutor(int idProdutor);
 
-        Task<Agenda> ConsultarDatasMaisAgendadasAsync(int idProdutor);
+        IEnumerable<Agenda> ConsultarDatasMaisAgendadas(int idProdutor);
 
-        Task<Agenda> ConsultarAtoresMaisReservadosAsync(int idProdutor);
+        IEnumerable<Agenda> ConsultarAtoresMaisReservados(int idProdutor);
 
     }
 }

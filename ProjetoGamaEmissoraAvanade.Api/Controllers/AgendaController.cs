@@ -2,6 +2,7 @@
 using Marraia.Notifications.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoGamaEmissora.Application._1._2___AppAgenda._1._2._1___AgendaInput;
 using ProjetoGamaEmissora.Application._1._2___AppAgenda._1._2._2___Interfaces;
 using ProjetoGamaEmissora.Dominio.Modelo;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace ProjetoGamaEmissoraAvanade.Api.Controllers
         [ProducesResponseType(typeof(string), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> Post([FromBody] Agenda input)
+        public async Task<IActionResult> Post([FromBody] AgendaInput input)
         {
             var item = await _agendaAppService
                                 .InserirAgendaAsync(input)
@@ -40,11 +41,11 @@ namespace ProjetoGamaEmissoraAvanade.Api.Controllers
         [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult>  Get([FromRoute] int id)
+        public IActionResult  Get([FromRoute] int id)
         {
-            var item = await _agendaAppService
-                                 .ConsultarAgendaProdutorAsync(id)
-                                 .ConfigureAwait(false);
+            var item = _agendaAppService
+                                 .ConsultarAgendaProdutor(id);
+                                 
             return Ok(item);
         }
 

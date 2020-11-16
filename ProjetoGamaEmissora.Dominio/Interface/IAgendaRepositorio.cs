@@ -8,13 +8,13 @@ namespace ProjetoGamaEmissora.Dominio.Interface
 {
     public interface IAgendaRepositorio
     {
-        Task<Agenda> InserirAgendaAsync(Agenda agenda);
+        Task<int> InserirAgendaAsync(Agenda agenda);
 
-        Task<Agenda> ConsultarAgendaProdutorAsync(int idProdutor);
+        IEnumerable<Agenda> ConsultarAgendaProdutor(int idProdutor);
 
-        Task<Agenda> ConsultarDatasMaisAgendadasAsync(int idProdutor);
+        IEnumerable<Agenda> ConsultarDatasMaisAgendadas(int idProdutor);
 
-        Task<Agenda> ConsultarAtoresMaisReservadosAsync(int idProdutor);
+        IEnumerable<Agenda> ConsultarAtoresMaisReservados(int idProdutor);
 
     }
 }
