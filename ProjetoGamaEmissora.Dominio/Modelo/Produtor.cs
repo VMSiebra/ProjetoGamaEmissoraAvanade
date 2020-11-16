@@ -6,24 +6,22 @@ namespace ProjetoGamaEmissora.Dominio.modelo
 {
     public class Produtor
     {
+        public int _ProdutorID { get; private set; }
         public int _UsuarioID { get; private set; }
         public string _Nome { get; private set; }
-        public int _Idade { get; private set; }
-        public string _Sexo { get; private set; }       
+       
 
-        public Produtor(string nome, int idade, string sexo)
+
+        public Produtor(int produtorId, int usuarioId, string nome)
         {
-            _Nome = nome;
-            _Idade = idade;
-            _Sexo = sexo;
+            _ProdutorID = produtorId;
+            _UsuarioID = usuarioId;
+            _Nome = nome;           
         }
-
-        public Produtor(int usuarioId, string nome, int idade, string sexo)
+        public Produtor(int usuarioId, string nome)
         {
             _UsuarioID = usuarioId;
             _Nome = nome;
-            _Idade = idade;
-            _Sexo = sexo;
         }
 
         public bool IsValid()
@@ -31,9 +29,7 @@ namespace ProjetoGamaEmissora.Dominio.modelo
             var valid = true;
 
             if (
-                (string.IsNullOrEmpty(_Nome)) ||
-                (_Idade <= 0) ||
-                (string.IsNullOrEmpty(_Sexo))               
+                (string.IsNullOrEmpty(_Nome))               
                ) valid = false;
 
             return valid;
