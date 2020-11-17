@@ -40,3 +40,24 @@ Ferramentas de desenvolvimento
 <li>Banco de dados SQL Server 2019</li>
 <li>Angular</li>
 </ul>
+
+
+
+Aprendizados e Desenvolvimento:	
+
+	Trabalho em equipe;
+	Reconhecimento das emoções e como gerenciá-las;
+	Gerenciamento de projeto com metodologias ágeis(Scrum);
+	Itil;
+	Conhecimento do Devops. Uso da ferramenta Azure no processo amplo de desenvolvimento;
+	Aprendizado do framework .Net Core;
+	Fundamentos da POO e dos princípios SOLID com o C#; 
+	Soft Skills
+
+Difuculdades:
+
+Gerenciamento de tempo, onde os integrantes do time tinham serviços a mais como, faculdade, trabalhos etc.
+A necessidade de um aprendizado mais rápido devido ao cronograma das semanas. 
+Determinados temas foram inéditos para os integrantes, o que gerou um desafio maior no aprendizado.
+
+
