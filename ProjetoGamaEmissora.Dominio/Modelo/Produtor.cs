@@ -9,13 +9,13 @@ namespace ProjetoGamaEmissora.Dominio.modelo
         public int _UsuarioID { get; private set; }
         public int _ProdutorID { get; private set; }
         public string _Nome { get; private set; }
-        
+
 
         public Produtor(int produtorId, string nome)
         {
             _ProdutorID = produtorId;
             _Nome = nome;
-            
+
         }
 
         public Produtor(int usuarioId, int produtorId, string nome)
@@ -23,7 +23,7 @@ namespace ProjetoGamaEmissora.Dominio.modelo
             _UsuarioID = usuarioId;
             _ProdutorID = produtorId;
             _Nome = nome;
-          
+
         }
 
         public bool IsValid()
@@ -38,3 +38,4 @@ namespace ProjetoGamaEmissora.Dominio.modelo
 
     }
 }
+
