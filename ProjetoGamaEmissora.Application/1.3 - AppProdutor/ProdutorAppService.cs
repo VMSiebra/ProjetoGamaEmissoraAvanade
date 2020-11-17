@@ -12,32 +12,37 @@ namespace ProjetoGamaEmissora.Application._1._3___AppProdutor
 {
     public class ProdutorAppService : IProdutorAppService
     {
-        private readonly IProdutorRepositorio _atorRepositorio;
+        private readonly IProdutorRepositorio _produtorRepositorio;
         private readonly IUsuarioRepositorio _usuarioRepositorio;
         private readonly ISmartNotification _notification;
         public ProdutorAppService(ISmartNotification notification,
-                              IProdutorRepositorio atorRepositorio,
+                              IProdutorRepositorio produtorRepositorio,
                               IUsuarioRepositorio usuarioRepositorio)
         {           
             _notification = notification;
             _usuarioRepositorio = usuarioRepositorio;
-            _atorRepositorio = atorRepositorio;
+            _produtorRepositorio = produtorRepositorio;
         }
 
-        public async Task<Produtor> ConsultarItemProdutorIdAsync(int id)
+        public async Task<Produtor> ConsultarProdutorAsync(int id)
         {
-            return await _atorRepositorio
-                            .ConsultarItemProdutorIdAsync(id)
-                            .ConfigureAwait(false);
+            return await _produtorRepositorio
+                           .ConsultarProdutorAsync(id)
+                           .ConfigureAwait(false);
         }
 
-        public async Task<Produtor> InserirProdutorAsync(ProdutorInput input)
+        public Task<int> ConsultarProdutorUsuarioIdAsync(int id)
         {
+            throw new NotImplementedException();
+        }
 
+        public async Task<Produtor> InserirProdutorAsync(ProdutorInput produtor)
+        {
             var user = await _usuarioRepositorio
-                  .RecuperarIdAsync(input._UsuarioID)
+                  .RecuperarIdAsync(produtor._UsuarioID)
                   .ConfigureAwait(false);
-          
+
+        
 
             if (user is null)
             {
@@ -45,24 +50,25 @@ namespace ProjetoGamaEmissora.Application._1._3___AppProdutor
                 return default;
             }
 
-            var ator = new Produtor(user._UsuarioID, input._Nome);
+            var ator = new Produtor(user._UsuarioID, produtor._Nome);
 
-            
+           
+
             var actorId = await _produtorRepositorio
                             .ConsultarProdutorUsuarioIdAsync(user._UsuarioID)
                             .ConfigureAwait(false);
 
             if (actorId > 0)
             {
-                _notification.NewNotificationConflict("Ator já cadastrado.");
+                _notification.NewNotificationConflict("Produtor já cadastrado.");
                 return default;
             }
 
-            var atorId = await _produtorRepositorio
+            var produtorId = await _produtorRepositorio
                    .InserirProdutorAsync(ator)
                    .ConfigureAwait(false);
 
-            return await ConsultarItemProdutorIdAsync(atorId)
+            return await ConsultarProdutorAsync(produtorId)
                             .ConfigureAwait(false);
         }
     }

@@ -2,6 +2,8 @@
 using Marraia.Notifications.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoGamaEmissora.Application._1._3___AppProdutor._1._3._1___ProdutorInput;
+using ProjetoGamaEmissora.Application._1._3___AppProdutor._1._3._2___Interfaces;
 using ProjetoGamaEmissora.Application.AppAtor.Input;
 using ProjetoGamaEmissora.Application.AppAtor.Interfaces;
 using System;
@@ -28,7 +30,7 @@ namespace ProjetoGamaEmissoraAvanade.Api.Controllers
         [ProducesResponseType(typeof(string), 201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> Post([FromBody] AtorInput input)
+        public async Task<IActionResult> Post([FromBody] ProdutorInput input)
         {
             var item = await _produtorAppService
                                 .InserirProdutorAsync(input)
@@ -45,7 +47,7 @@ namespace ProjetoGamaEmissoraAvanade.Api.Controllers
         public async Task<IActionResult> Get([FromRoute] int id)
         {
             var item = await _produtorAppService
-                                 .ConsultarItemProdutorIdAsync(id)
+                                 .ConsultarProdutorAsync(id)
                                  .ConfigureAwait(false);
             return Ok(item);
         }

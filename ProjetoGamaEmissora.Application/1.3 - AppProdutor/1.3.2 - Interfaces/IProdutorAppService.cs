@@ -10,6 +10,7 @@ namespace ProjetoGamaEmissora.Application._1._3___AppProdutor._1._3._2___Interfa
     public interface IProdutorAppService 
     {
         Task<Produtor> InserirProdutorAsync(ProdutorInput produtor);
-        Task<Produtor> ConsultarItemProdutorIdAsync(int id);       
+        Task<Produtor> ConsultarProdutorAsync(int id);       
+        Task<int> ConsultarProdutorUsuarioIdAsync(int id);       
     }
 }
