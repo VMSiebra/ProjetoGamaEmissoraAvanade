@@ -17,7 +17,9 @@ namespace ProjetoGamaEmissora.Infraestrutura.IoC._3._2._2___Repositorio
             services.AddScoped<ILoginAppService, LoginAppService>();
             services.AddScoped<IAtorRepositorio, AtorRepositorio>();
             services.AddScoped<IProdutorRepositorio, ProdutorRepositorio>();
+            services.AddScoped<IAgendaRepositorio, AgendaRepositorio>();
             services.AddScoped<IGeneroRepositorio, GeneroRepositorio>();
+
         }
     }
 }

@@ -17,7 +17,16 @@ namespace ProjetoGamaEmissora.Dominio.modelo
         public string _Status { get; private set; }
         public int _Relevancia { get; private set; }
 
-
+        public Ator(int atorId, string nome, int idade, char sexo, double cache, string status, int relevancia)
+        {
+            _AtorID = atorId;
+            _Nome = nome;
+            _Idade = idade;
+            _Sexo = sexo;
+            _Cache = cache;
+            _Status = status;
+            _Relevancia = relevancia;
+        }
         public Ator(int usuarioID, int atorId, string nome, int idade, char sexo, List<Genero> genero, double cache, string status, int relevancia)           
         {
             _UsuarioID  = usuarioID;
