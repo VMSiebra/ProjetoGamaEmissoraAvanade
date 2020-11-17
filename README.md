@@ -54,7 +54,7 @@ Aprendizados e Desenvolvimento:
 	Fundamentos da POO e dos princípios SOLID com o C#; 
 	Soft Skills
 
-Difuculdades:
+Dificuldades:
 
 Gerenciamento de tempo, onde os integrantes do time tinham serviços a mais como, faculdade, trabalhos etc.
 A necessidade de um aprendizado mais rápido devido ao cronograma das semanas. 
